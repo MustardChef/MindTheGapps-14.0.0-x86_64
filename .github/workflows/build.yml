@@ -22,7 +22,7 @@ jobs:
         make gapps_x86_64
         
     - name: Create MTG Release Tag
-      run: echo "ZIP_FILE_NAME=$(ls vendor_gapps/out/MindTheGapps-*.zip | head -n 1)" >> $GITHUB_ENV
+      run:  echo "ZIP_FILE_NAME=$(basename vendor_gapps/out/MindTheGapps-*.zip .zip)" >> $GITHUB_ENV
 
     - name: Upload MindTheGapps builds to release 🤌
       uses: softprops/action-gh-release@v2
