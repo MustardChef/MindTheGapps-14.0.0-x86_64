@@ -26,5 +26,5 @@ jobs:
           vendor_gapps/out/MindTheGapps-*.zip.md5sum
         fail_on_unmatched_files: true
         append_body: false
-        automatic_release_tag: "latest"
+        tag_name: latest
         token: ${{ secrets.GITHUB_TOKEN }}
