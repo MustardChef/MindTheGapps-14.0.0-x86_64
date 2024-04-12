@@ -1,0 +1,30 @@
+name: MindTheGapps (14.0.0)
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clone MindTheGapps repo
+      run: |
+        git clone https://gitlab.com/MindTheGapps/vendor_gapps --depth=1 -b upsilon
+    - name: Build MindTheGapps (x86_64)
+      run: |
+        cd vendor_gapps/
+        make gapps_x86_64
+    - name: Upload MindTheGapps builds to release 🤌
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          vendor_gapps/out/MindTheGapps-*.zip
+          vendor_gapps/out/MindTheGapps-*.zip.md5sum
+        fail_on_unmatched_files: true
+        append_body: false
+        automatic_release_tag: "latest"
+        token: ${{ secrets.GITHUB_TOKEN }}
