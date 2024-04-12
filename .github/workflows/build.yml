@@ -26,5 +26,6 @@ jobs:
           vendor_gapps/out/MindTheGapps-*.zip.md5sum
         fail_on_unmatched_files: true
         append_body: false
-        tag_name: latest
+        tag_name: ${{ %d/%m/%Y }}
+        name: MindTheGapps 14.0.0 ${{ %d/%m/%Y }}
         token: ${{ secrets.GITHUB_TOKEN }}
