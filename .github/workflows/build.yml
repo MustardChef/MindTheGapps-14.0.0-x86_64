@@ -22,7 +22,7 @@ jobs:
         make gapps_x86_64
         
     - name: Create MTG Release Tag
-      run: echo "CURRENT_DATE=MindTheGapps+$(date +'%Y%d%m')" >> $GITHUB_ENV
+      run: echo "TAG_MTG=MindTheGapps-14.0.0-x86_64-+$(date +'%Y%d%m')" >> $GITHUB_ENV
       
     - name: Upload MindTheGapps builds to release 🤌
       uses: softprops/action-gh-release@v2
@@ -32,6 +32,6 @@ jobs:
           vendor_gapps/out/MindTheGapps-*.zip.md5sum
         fail_on_unmatched_files: true
         append_body: false
-        tag_name: ${{ env.CURRENT_DATE }}
-        name: MindTheGapps 14.0.0 ${{ env.CURRENT_DATE }}
+        tag_name: ${{ env.TAG_MTG }}
+        name: ${{ env.TAG_MTG }}
         token: ${{ secrets.GITHUB_TOKEN }}
