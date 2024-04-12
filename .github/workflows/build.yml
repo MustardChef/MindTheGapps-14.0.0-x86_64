@@ -18,6 +18,8 @@ jobs:
       run: |
         cd vendor_gapps/
         make gapps_x86_64
+    - name: Get current date
+      run: echo "CURRENT_DATE=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
     - name: Upload MindTheGapps builds to release 🤌
       uses: softprops/action-gh-release@v2
       with:
@@ -26,6 +28,6 @@ jobs:
           vendor_gapps/out/MindTheGapps-*.zip.md5sum
         fail_on_unmatched_files: true
         append_body: false
-        tag_name: $( '%d/%m/%Y' )
-        name: MindTheGapps 14.0.0 $( '%d/%m/%Y' )
+        tag_name: ${{ env.CURRENT_DATE }}
+        name: MindTheGapps 14.0.0 ${{ env.CURRENT_DATE }}
         token: ${{ secrets.GITHUB_TOKEN }}
