@@ -22,7 +22,7 @@ jobs:
         make gapps_x86_64
         
     - name: Create MTG Release Tag
-      run: echo "TAG_MTG=MindTheGapps-14.0.0-x86_64-+$(date +'%Y%d%m')" >> $GITHUB_ENV
+      run: echo "TAG_MTG=MindTheGapps-14.0.0-x86_64-$(date +'%Y%d%m')" >> $GITHUB_ENV
       
     - name: Upload MindTheGapps builds to release 🤌
       uses: softprops/action-gh-release@v2
