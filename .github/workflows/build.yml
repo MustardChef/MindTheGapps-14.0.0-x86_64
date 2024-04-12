@@ -10,16 +10,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    
     - name: Clone MindTheGapps repo
       run: |
         git clone https://gitlab.com/MindTheGapps/vendor_gapps --depth=1 -b upsilon
+        
     - name: Build MindTheGapps (x86_64)
       run: |
         cd vendor_gapps/
         make gapps_x86_64
-    - name: Get current date
-      run: echo "CURRENT_DATE=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
+        
+    - name: Create MTG Release Tag
+      run: echo "CURRENT_DATE=MindTheGapps+$(date +'%Y%d%m')" >> $GITHUB_ENV
+      
     - name: Upload MindTheGapps builds to release 🤌
       uses: softprops/action-gh-release@v2
       with:
